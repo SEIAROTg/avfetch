@@ -2,8 +2,11 @@
 
 import types
 import core
+import os
+import sys
 
-enginedir = 'engine'
+enginepackage = 'engine'
+enginedir = os.path.dirname(sys.argv[0]) + '/engine'
 
 def get_engine(avitem):
     if avitem.has_key('engine'):
@@ -94,7 +97,7 @@ engines = {}
 for src_file in os.listdir(enginedir):
     if is_engine(src_file):
         name = src_file[:-3]
-        engines[name] = getattr(__import__(enginedir + '.' + name), name)
+        engines[name] = getattr(__import__(enginepackage + '.' + name), name)
         if not callable(getattr(engines[name], 'getIdByPage', None)):
             engines[name].getIdByPage = default_getIdByPage
         if not callable(getattr(engines[name], 'list', None)):
