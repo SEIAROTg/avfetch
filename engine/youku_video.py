@@ -64,7 +64,7 @@ def resolve(avitem):
                             'title': avitem['title'],
                             'id': avitem['id'],
                             'ext': format[seg],
-                            'part': '%02X' % int(part['no'])
+                            'part': '%03d' % int(part['no'])
                     })
                 }
                 files.append(this)
